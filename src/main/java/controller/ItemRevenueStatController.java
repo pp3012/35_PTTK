@@ -1,7 +1,7 @@
 package controller;
 
-import dao.RevenueStatDAO;
-import model.RevenueStat;
+import dao.ProductStatDAO;
+import model.ProductStat;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -59,7 +59,7 @@ public class ItemRevenueStatController extends HttpServlet {
         if (startLocalDate.isAfter(endLocalDate)) {
             request.setAttribute("error", "Bộ lọc thời gian không hợp lệ: Ngày bắt đầu (" 
                     + startLocalDate + ") không được lớn hơn Ngày kết thúc (" + endLocalDate + ")!");
-            request.setAttribute("statList", new ArrayList<RevenueStat>());
+            request.setAttribute("statList", new ArrayList<ProductStat>());
             request.setAttribute("totalRevenue", 0.0);
             request.setAttribute("totalQuantity", 0);
             request.getRequestDispatcher("/item_revenue_stat.jsp").forward(request, response);
@@ -69,15 +69,15 @@ public class ItemRevenueStatController extends HttpServlet {
         Date sqlStartDate = Date.valueOf(startLocalDate);
         Date sqlEndDate = Date.valueOf(endLocalDate);
 
-        RevenueStatDAO dao = new RevenueStatDAO();
-        List<RevenueStat> list = dao.getItemByRevenue(sqlStartDate, sqlEndDate);
+        ProductStatDAO dao = new ProductStatDAO();
+        List<ProductStat> list = dao.getItemByRevenue(sqlStartDate, sqlEndDate);
         if (list == null) {
             list = new ArrayList<>();
         }
 
         double totalRevenue = 0;
         int totalQuantity = 0;
-        for (RevenueStat item : list) {
+        for (ProductStat item : list) {
             totalRevenue += item.getTongdoanhthu();
             totalQuantity += item.getTongsoluong();
         }

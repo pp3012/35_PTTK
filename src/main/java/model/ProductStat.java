@@ -1,14 +1,14 @@
 package model;
 
-public class RevenueStat extends Product {
+public class ProductStat extends Product {
     private int tongsoluong;
     private double tongdoanhthu;
 
-    public RevenueStat() {
+    public ProductStat() {
         super();
     }
 
-    public RevenueStat(int tongsoluong, double tongdoanhthu) {
+    public ProductStat(int tongsoluong, double tongdoanhthu) {
         super();
         this.tongsoluong = tongsoluong;
         this.tongdoanhthu = tongdoanhthu;

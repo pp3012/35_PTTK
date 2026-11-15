@@ -1,20 +1,20 @@
 package dao;
 
 import model.Category;
-import model.RevenueStat;
+import model.ProductStat;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RevenueStatDAO extends DAO {
-    public RevenueStatDAO() {
+public class ProductStatDAO extends DAO {
+    public ProductStatDAO() {
         super();
     }
 
-    public List<RevenueStat> getItemByRevenue(Date startDate, Date endDate) {
-        List<RevenueStat> list = new ArrayList<>();
+    public List<ProductStat> getItemByRevenue(Date startDate, Date endDate) {
+        List<ProductStat> list = new ArrayList<>();
         if (con == null) return list;
 
         String[][] tableCombos = {
@@ -48,7 +48,7 @@ public class RevenueStatDAO extends DAO {
                 ps.setDate(2, endDate);
                 try (ResultSet rs = ps.executeQuery()) {
                     while (rs.next()) {
-                        RevenueStat stat = new RevenueStat();
+                        ProductStat stat = new ProductStat();
                         stat.setId(rs.getString("id"));
                         stat.setName(rs.getString("name"));
                         stat.setMota(rs.getString("mota"));
