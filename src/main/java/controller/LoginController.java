@@ -44,7 +44,7 @@ public class LoginController extends HttpServlet {
         }
 
         UserDAO userDAO = new UserDAO();
-        User user = userDAO.getUser(username, password);
+        User user = userDAO.checkLogin(username, password);
 
         if (user != null) {
             HttpSession session = request.getSession();
